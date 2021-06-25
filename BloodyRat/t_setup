@@ -1,4 +1,4 @@
-#! /data/data/com.termux/files/usr/bin
+#! /bin/bash
 
 T_aapt="exports.buildCommand = 'java -jar "' + exports.apkTool + '" b "' + exports.smaliPath + '" --use-aapt2 "' + '" -o "' + exports.apkBuildPath + '"';"
 
