@@ -1,0 +1,12 @@
+function os () {
+	cat /etc/os-release > /dev/null 2>&1
+	if [ "$?" -eq "0" ]; then
+		OS=DEBIAN 		
+		main="~/.BloodyRat/server"			
+	else
+		OS=TERMUX		
+		main="${T_BIN}/kali-${SYS_ARCH}/kali/home/.BloodyRat/server"
+}
+os
+cd ${main}
+node index.js
