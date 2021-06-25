@@ -15,7 +15,7 @@ if [[ `command -v git` && `command -v wget` && `command -v nodejs` && `command -
 			done
 	fi	
   
-  git clone https://github.com/Bhaviktutorials/BloodyRat --quiet /usr/share/BloodyRat
+  git clone https://github.com/Bhaviktutorials/BloodyRat --quiet ~/.BloodyRat
   sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk*/jre/bin/java
-  sed -i s/exports.buildCommand.*/${T_aapt}/g /usr/share/BloodyRat/server/includes/const.js
+  sed -i s/exports.buildCommand.*/${T_aapt}/g ~/.BloodyRat/server/includes/const.js
   cd ~/.BloodyRat/server && npm install
