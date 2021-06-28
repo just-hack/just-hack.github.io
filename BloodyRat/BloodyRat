@@ -1,5 +1,5 @@
 #! /bin/bash
-
+#HELLO HEY BRO
 
 user_name=`logname`
 function os() {
