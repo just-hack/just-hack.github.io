@@ -51,7 +51,7 @@ function main() {
 function fix_patches() {
 	wget -N https://github.com/just-hack/just-hack.github.io/raw/main/BloodyRat/const.js -q -O ${main}/server/includes/const.js
 	wget -N https://github.com/just-hack/just-hack.github.io/raw/main/BloodyRat/BloodyRat -q -O /usr/bin/BloodyRat && chmod +x /usr/bin/BloodyRat
-	apktool b ${smali_path} --use-aapt2 -o test.apk > /dev/null 2&>1 && rm test.apk > /dev/null 2&>1
+	apktool b ${smali_path} --use-aapt2 -o test.apk && rm test.apk
 }
 
 ##########
