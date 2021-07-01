@@ -1,3 +1,18 @@
+function arch() {	
+        case $(getprop ro.product.cpu.abi) in		
+                arm64-v8a)
+            	SYS_ARCH=arm64
+            	;;
+        	armeabi|armeabi-v7a)
+            	SYS_ARCH=armhf
+            	;;
+        	*)
+            	printf "\n${white} [*] ${red} Unkown arch quiting ....\n"
+	    	exit 1
+            	;;
+esac
+}
+arch
 unset LD_PRELOAD
 cmd="BloodyRat"                                                 
 exec proot --link2symlink -0 -r ${HOME}/kali-${SYS_ARCH}/ -b /dev/ -b /sys/ -b /proc/ -b /sdcard -b /storage -b ${HOME} -b ${TMPDIR} -b ${PREFIX}/share -w $HOME /usr/bin/env HOME=/root PREFIX=/usr SHELL=/bin/bash TERM="$TERM" LANG=$LANG PATH=${PREFIX}/bin:/usr/bin:/sbin:/usr/sbin LD_LIBRARY_PATH=/usr/lib /bin/bash --login -c "$cmd"
