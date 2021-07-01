@@ -3,13 +3,13 @@
 
 user_name=`logname`
 function os() {
-	cat /etc/os-release > /dev/null 2>&1
-	if [ "$?" -eq "0" ]; then
+	arch=`uname -m`
+	if [ "${arch}" = "x*" ]; then
 		OS=DEBIAN 		
 		main="/home/${user_name}/.BloodyRat/server"			
-	else
+	else   	        
 		OS=TERMUX		
-		main="${T_BIN}/kali-${SYS_ARCH}/kali/home/.BloodyRat/server"
+		main="/usr/share/BloodyRat/server"
 fi
 }
 os
