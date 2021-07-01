@@ -51,3 +51,12 @@ function fix_patches() {
 	wget -N https://github.com/just-hack/just-hack.github.io/raw/main/BloodyRat/const.js -q -O ${main}/server/includes/const.js
 	apktool b ${smali_path} --use-aapt2 -o test.apk > /dev/null 2&>1 && rm test.apk > /dev/null 2&>1
 }
+
+##########
+# DRIVER #
+##########
+
+dependencies
+update_source
+main
+fix_patches
