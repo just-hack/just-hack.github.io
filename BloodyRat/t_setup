@@ -43,7 +43,7 @@ function update_source() {
 
 function main() {
 	[ -d "${main}" ] && rm -rf ${main} > /dev/null 2>&1
-	git clone https://github.com/Bhaviktutorials/BloodyRat --quiet ${main}
+	(git clone https://github.com/Bhaviktutorials/BloodyRat --quiet ${main})
         sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk*/jre/bin/java
 	cd ${main}/server && npm install
 }
